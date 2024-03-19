@@ -4,7 +4,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -38,7 +43,7 @@ fun NewsScreen(navController: NavController) {
 fun NewsScreenContent(navController: NavController) {
     Scaffold(
         modifier = Modifier
-            .padding(top = padding, bottom = padding, start = padding, end = padding),
+            .padding(padding),
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -46,7 +51,12 @@ fun NewsScreenContent(navController: NavController) {
                     titleContentColor = Color.Blue,
                 ),
                 title = {
-                    Text(stringResource(R.string.cnn_news), modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+                    Text(stringResource(R.string.cnn_news), modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Start)
+                },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
                 }
             )
         },

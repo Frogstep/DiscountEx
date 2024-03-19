@@ -36,6 +36,8 @@ import io.ilyasin.discountex.ui.common.FeedEntry
 import io.ilyasin.discountex.ui.common.Screen
 import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
 import io.ilyasin.discountex.ui.theme.Dimens.padding
+import io.ilyasin.discountex.ui.theme.Dimens.smallPadding
+import io.ilyasin.discountex.ui.theme.Dimens.titleTextSize
 import java.net.URLEncoder
 
 @Composable
@@ -72,8 +74,8 @@ fun DetailsScreenContent(
                     .padding(padding)
                     .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(fontSize = 24.sp, text = stringResource(R.string.my_name_is))
-                Spacer(modifier = Modifier.padding(5.dp))
+                Text(fontSize = titleTextSize, text = stringResource(R.string.my_name_is))
+                Spacer(modifier = Modifier.padding(smallPadding))
                 Text(clockState.value)
 
                 if (feedEntry != null) {

@@ -29,8 +29,12 @@ import io.ilyasin.discountex.data.DataSource
 import io.ilyasin.discountex.data.ImageData
 import io.ilyasin.discountex.data.ItemData
 import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
+import io.ilyasin.discountex.ui.theme.Dimens.gridItemLineHeight
+import io.ilyasin.discountex.ui.theme.Dimens.gridItemTitleFontSize
 import io.ilyasin.discountex.ui.theme.Dimens.itemHeight
+import io.ilyasin.discountex.ui.theme.Dimens.padding
 import io.ilyasin.discountex.ui.theme.Dimens.smallCornerRadius
+import io.ilyasin.discountex.ui.theme.Dimens.smallPadding
 import io.ilyasin.discountex.utils.getGridImage
 
 @Composable
@@ -54,7 +58,7 @@ fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .height(itemHeight)
-                .padding(4.dp)
+                .padding(smallPadding)
         ) {
             val (imageRef, title) = createRefs()
             val image = item.getGridImage()
@@ -80,8 +84,8 @@ fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
             Text(text = item.title,
                 color = Color.White,
                 maxLines = 2,
-                fontSize = 12.sp,
-                lineHeight = 16.sp,
+                fontSize = gridItemTitleFontSize,
+                lineHeight = gridItemLineHeight,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .constrainAs(title) {
@@ -90,7 +94,7 @@ fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
                         end.linkTo(parent.end)
                     }
                     .background(Color.Black.copy(alpha = 0.5f))
-                    .padding(5.dp)
+                    .padding(padding)
 
             )
         }

@@ -18,11 +18,15 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.ilyasin.discountex.R
 import io.ilyasin.discountex.data.ItemData
-import io.ilyasin.discountex.ui.theme.Dimens
+import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
+import io.ilyasin.discountex.ui.theme.Dimens.itemMinWidth
+import io.ilyasin.discountex.ui.theme.Dimens.largePadding
+import io.ilyasin.discountex.ui.theme.Dimens.padding
 import java.net.URLEncoder
 
 
@@ -46,9 +50,9 @@ fun ErrorView(navController: NavController, channel: State<List<ItemData>>) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp), contentAlignment = Alignment.Center
+                .padding(horizontal = largePadding), contentAlignment = Alignment.Center
         ) {
-            ErrorText("Unable to download RSS feed")
+            ErrorText(stringResource(R.string.unable_to_download_rss_feed))
         }
     } else {
         Column(
@@ -59,9 +63,9 @@ fun ErrorView(navController: NavController, channel: State<List<ItemData>>) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(Dimens.padding), contentAlignment = Alignment.Center
+                    .padding(padding), contentAlignment = Alignment.Center
             ) {
-                ErrorText("Unable to update RSS feed")
+                ErrorText(stringResource(R.string.unable_to_update_rss_feed))
             }
             FeedsList(navController, channel)
         }
@@ -82,9 +86,9 @@ fun ErrorText(text: String) {
         color = Color.White,
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .background(Color.Red, shape = RoundedCornerShape(10.dp))
+            .background(Color.Red, shape = RoundedCornerShape(cornerRadius))
             .fillMaxWidth()
-            .padding(Dimens.padding)
+            .padding(padding)
     )
 }
 
@@ -94,10 +98,10 @@ fun FeedsList(navController: NavController, channel: State<List<ItemData>>) {
     val listState = rememberLazyGridState()
     LazyVerticalGrid(
         state = listState,
-        columns = GridCells.Adaptive(minSize = 128.dp),
-        modifier = Modifier.padding(10.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+        columns = GridCells.Adaptive(minSize = itemMinWidth),
+        modifier = Modifier.padding(top = padding, bottom = padding),
+        verticalArrangement = Arrangement.spacedBy(padding),
+        horizontalArrangement = Arrangement.spacedBy(padding)
     ) {
         items(channel.value.size, key = { index -> channel.value[index].link }) { index ->
             val item = channel.value[index]

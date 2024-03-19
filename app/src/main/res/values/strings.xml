@@ -7,4 +7,6 @@
     <string name="my_name_is">My name is: Ilya Sinitsin</string>
     <string name="failed_to_load_page">Failed to load web page</string>
     <string name="cnn_news">CNN news</string>
+    <string name="unable_to_download_rss_feed">Unable to download RSS feed</string>
+    <string name="unable_to_update_rss_feed">Unable to update RSS feed</string>
 </resources>
