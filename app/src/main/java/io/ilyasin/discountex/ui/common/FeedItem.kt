@@ -19,15 +19,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import io.ilyasin.discountex.R
 import io.ilyasin.discountex.data.DataSource
-import io.ilyasin.discountex.data.ImageData
-import io.ilyasin.discountex.data.ItemData
+import io.ilyasin.discountex.data.schemas.ImageData
+import io.ilyasin.discountex.data.schemas.ItemData
 import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
 import io.ilyasin.discountex.ui.theme.Dimens.gridItemLineHeight
 import io.ilyasin.discountex.ui.theme.Dimens.gridItemTitleFontSize

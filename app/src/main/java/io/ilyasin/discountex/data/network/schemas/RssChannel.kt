@@ -1,6 +1,6 @@
 package io.ilyasin.discountex.data.network.schemas
 
-import io.ilyasin.discountex.data.ChannelData
+import io.ilyasin.discountex.data.schemas.ChannelData
 import io.ilyasin.discountex.data.DataSource
 
 data class RssChannel(

@@ -5,9 +5,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.ilyasin.discountex.data.ChannelData
+import io.ilyasin.discountex.data.schemas.ChannelData
 import io.ilyasin.discountex.data.DataSource
-import io.ilyasin.discountex.data.ItemData
+import io.ilyasin.discountex.data.schemas.ItemData
 import io.ilyasin.discountex.domain.IFeedUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

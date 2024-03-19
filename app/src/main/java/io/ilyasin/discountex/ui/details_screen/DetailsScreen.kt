@@ -2,6 +2,8 @@ package io.ilyasin.discountex.ui.details_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -74,9 +78,9 @@ fun DetailsScreenContent(
                     .padding(padding)
                     .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(fontSize = titleTextSize, text = stringResource(R.string.my_name_is))
+                Text(fontSize = titleTextSize, text = stringResource(R.string.my_name_is), color = Color.Black)
                 Spacer(modifier = Modifier.padding(smallPadding))
-                Text(clockState.value)
+                Text(clockState.value, color = Color.Black)
 
                 if (feedEntry != null) {
                     Spacer(modifier = Modifier.padding(5.dp))
@@ -99,9 +103,17 @@ fun DetailsScreenContent(
                             })
                 }
 
-                Button(modifier = Modifier.padding(top = padding).testTag("open_news_button"),
-                    onClick = { navController.navigate(Screen.RssNewsScreen.route) }) {
-                    Text(stringResource(R.string.show_news_feed))
+                Button(
+                    modifier = Modifier
+                        .padding(top = padding)
+                        .testTag("open_news_button"),
+                    onClick = { navController.navigate(Screen.RssNewsScreen.route) },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text(stringResource(R.string.show_news_feed), color = Color.White)
                 }
             }
         }

@@ -1,6 +1,7 @@
-package io.ilyasin.discountex.data
+package io.ilyasin.discountex.data.schemas
 
 import androidx.compose.runtime.Immutable
+import io.ilyasin.discountex.data.DataSource
 
 @Immutable
 data class ItemData(

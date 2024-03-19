@@ -1,6 +1,6 @@
 package io.ilyasin.discountex.domain
 
-import io.ilyasin.discountex.data.ChannelData
+import io.ilyasin.discountex.data.schemas.ChannelData
 import io.ilyasin.discountex.data.INewsRepository
 import io.ilyasin.discountex.data.DataSource
 import kotlinx.coroutines.flow.Flow

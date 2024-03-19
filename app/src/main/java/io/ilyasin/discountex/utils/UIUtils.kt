@@ -1,7 +1,7 @@
 package io.ilyasin.discountex.utils
 
-import io.ilyasin.discountex.data.ImageData
-import io.ilyasin.discountex.data.ItemData
+import io.ilyasin.discountex.data.schemas.ImageData
+import io.ilyasin.discountex.data.schemas.ItemData
 
 
 fun ItemData.getGridImage(): ImageData? {

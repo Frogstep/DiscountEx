@@ -1,0 +1,38 @@
+name: CI
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: 'main'
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: 17
+      - name: Fetch Tags
+        run: |
+          git fetch --all --tags
+      - name: Build release
+        run: |
+          if ./gradlew clean assembleRelease; then
+              echo "gradlew_success=true" >> $GITHUB_ENV
+          else
+            echo "gradlew_success=false" >> $GITHUB_ENV
+          fi
+      - name: Exit the action with proper code
+        run: |
+          if [[ ${{ env.gradlew_success }} == 'false' ]]; then
+            exit 1
+          fi
+          
+          
+          

@@ -1,8 +1,8 @@
 package io.ilyasin.discountex.data.network.schemas
 
 import io.ilyasin.discountex.data.DataSource
-import io.ilyasin.discountex.data.ImageData
-import io.ilyasin.discountex.data.ItemData
+import io.ilyasin.discountex.data.schemas.ImageData
+import io.ilyasin.discountex.data.schemas.ItemData
 
 data class RssItem(
     var title: String? = null,

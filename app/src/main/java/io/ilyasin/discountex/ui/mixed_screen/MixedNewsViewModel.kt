@@ -2,7 +2,7 @@ package io.ilyasin.discountex.ui.mixed_screen
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ilyasin.discountex.data.DataSource
-import io.ilyasin.discountex.data.ItemData
+import io.ilyasin.discountex.data.schemas.ItemData
 import io.ilyasin.discountex.domain.MixedFeedUseCase
 import io.ilyasin.discountex.ui.common.GridViewModel
 import javax.inject.Inject

@@ -14,6 +14,7 @@
 * The application checks for updates every 5 seconds. 
 * If the publication date in a channel (Travel, Sport, or Entertainment) is different from the last downloaded date, all the items in that channel will be replaced with the new ones. 
 * If the publication date is the same, the update will be skipped.
+* JetPack Compose library is knows for low performance in debug mode. Compile application in release variant for solving performance issues
 
 
 

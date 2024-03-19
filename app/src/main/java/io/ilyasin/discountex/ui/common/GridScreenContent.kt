@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import io.ilyasin.discountex.R
-import io.ilyasin.discountex.data.ItemData
+import io.ilyasin.discountex.data.schemas.ItemData
 import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
 import io.ilyasin.discountex.ui.theme.Dimens.itemMinWidth
 import io.ilyasin.discountex.ui.theme.Dimens.largePadding
@@ -34,7 +34,7 @@ import java.net.URLEncoder
 fun GridScreenContent(navController: NavController, channel: State<List<ItemData>>, progressState: State<ProgressState>) {
     Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize()//.background(Color.White),
     ) {
         when (progressState.value) {
             ProgressState.Loading, ProgressState.NotInitialized -> LoadingView()
