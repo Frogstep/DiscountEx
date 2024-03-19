@@ -17,10 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(): ViewModel(){
 
-    companion object{
-        private val TAG = DetailsViewModel::class.java.simpleName
-    }
-
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 

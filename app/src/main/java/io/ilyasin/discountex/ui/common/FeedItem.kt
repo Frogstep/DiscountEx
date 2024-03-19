@@ -1,6 +1,5 @@
 package io.ilyasin.discountex.ui.common
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,9 +25,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import io.ilyasin.discountex.R
-import io.ilyasin.discountex.data.ItemData
 import io.ilyasin.discountex.data.DataSource
 import io.ilyasin.discountex.data.ImageData
+import io.ilyasin.discountex.data.ItemData
 import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
 import io.ilyasin.discountex.ui.theme.Dimens.itemHeight
 import io.ilyasin.discountex.ui.theme.Dimens.smallCornerRadius

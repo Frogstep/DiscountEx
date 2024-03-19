@@ -3,7 +3,6 @@ package io.ilyasin.discountex.utils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.concurrent.TimeUnit
 
 object DateTimeUtils {
     fun formatDate(milliseconds: Long): String {

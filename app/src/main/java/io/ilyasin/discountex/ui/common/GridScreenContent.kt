@@ -31,7 +31,6 @@ fun GridScreenContent(navController: NavController, channel: State<List<ItemData
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.LightGray)
     ) {
         when (progressState.value) {
             ProgressState.Loading, ProgressState.NotInitialized -> LoadingView()

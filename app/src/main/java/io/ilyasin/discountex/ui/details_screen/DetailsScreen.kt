@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -83,6 +84,7 @@ fun DetailsScreenContent(
                         style = TextStyle(textDecoration = TextDecoration.Underline),
                         modifier = Modifier
                             .padding(padding)
+                            .testTag("link_label")
                             .clickable {
                                 navController.navigate(
                                     "${Screen.WebViewScreen.route}/${
@@ -95,7 +97,7 @@ fun DetailsScreenContent(
                             })
                 }
 
-                Button(modifier = Modifier.padding(top = padding),
+                Button(modifier = Modifier.padding(top = padding).testTag("open_news_button"),
                     onClick = { navController.navigate(Screen.RssNewsScreen.route) }) {
                     Text(stringResource(R.string.show_news_feed))
                 }

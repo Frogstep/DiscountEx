@@ -19,7 +19,7 @@
         <activity
             android:name=".ui.main_activity.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.DiscountEx">
+            android:theme="@style/Theme.SplashScreen.DiscountExSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
