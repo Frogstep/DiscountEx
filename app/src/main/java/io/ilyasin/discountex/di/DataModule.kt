@@ -1,4 +1,4 @@
-package io.ilyasin.logonex.di
+package io.ilyasin.discountex.di
 
 import dagger.Module
 import dagger.Provides

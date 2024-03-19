@@ -1,7 +1,6 @@
 package io.ilyasin.discountex.ui.main_activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,11 +18,11 @@ import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
 import io.ilyasin.discountex.ui.common.FeedEntry
 import io.ilyasin.discountex.ui.common.Screen
+import io.ilyasin.discountex.ui.common.URL_PARAMETER
 import io.ilyasin.discountex.ui.details_screen.DetailsScreen
 import io.ilyasin.discountex.ui.news_screen.NewsScreen
 import io.ilyasin.discountex.ui.news_screen.WebViewScreen
 import io.ilyasin.discountex.ui.theme.DiscountExTheme
-import java.net.URLDecoder
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -56,10 +55,10 @@ fun NewsRssApp() {
         }
 
         composable(
-            route = "${Screen.WebViewScreen.route}/{url}",
-            arguments = listOf(navArgument("url") { type = NavType.StringType })
+            route = "${Screen.WebViewScreen.route}/{$URL_PARAMETER}",
+            arguments = listOf(navArgument(URL_PARAMETER) { type = NavType.StringType })
         ) {
-            navBackStackEntry?.arguments?.getString("url")?.let {
+            navBackStackEntry?.arguments?.getString(URL_PARAMETER)?.let {
                 WebViewScreen(it)
             }
         }

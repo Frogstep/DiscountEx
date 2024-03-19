@@ -1,6 +1,5 @@
 package io.ilyasin.discountex.data.network.xml
 
-import android.util.Log
 import io.ilyasin.discountex.data.network.schemas.RssItem
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException

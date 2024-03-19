@@ -19,13 +19,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import io.ilyasin.discountex.R
 import io.ilyasin.discountex.data.ItemData
 import io.ilyasin.discountex.data.DataSource
+import io.ilyasin.discountex.data.ImageData
 import io.ilyasin.discountex.ui.theme.Dimens.cornerRadius
 import io.ilyasin.discountex.ui.theme.Dimens.itemHeight
 import io.ilyasin.discountex.ui.theme.Dimens.smallCornerRadius
@@ -34,7 +37,7 @@ import io.ilyasin.discountex.utils.getGridImage
 @Composable
 fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
 
-    val frameColor = when(item.source){
+    val frameColor = when (item.source) {
         DataSource.Travel -> Color.Yellow.copy(alpha = 0.5f)
         DataSource.Sport -> Color.Blue.copy(alpha = 0.5f)
         DataSource.Entertainment -> Color.Green.copy(alpha = 0.5f)
@@ -56,7 +59,6 @@ fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
         ) {
             val (imageRef, title) = createRefs()
             val image = item.getGridImage()
-            Log.d("FeedItem", "FeedItem: $image")
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(image?.url ?: "")
@@ -79,6 +81,8 @@ fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
             Text(text = item.title,
                 color = Color.White,
                 maxLines = 2,
+                fontSize = 12.sp,
+                lineHeight = 16.sp,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .constrainAs(title) {
@@ -87,8 +91,24 @@ fun FeedItem(item: ItemData, onItemClicked: (ItemData) -> Unit) {
                         end.linkTo(parent.end)
                     }
                     .background(Color.Black.copy(alpha = 0.5f))
+                    .padding(5.dp)
 
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun FeedItemPreview() {
+    FeedItem(
+        item = ItemData(
+            title = "This is some title",
+            link = "https://www.google.com",
+            description = "",
+            pubDate = "",
+            media = listOf(ImageData("https://i.pravatar.cc/300", 300, 300, "")),
+            source = DataSource.Travel
+        )
+    ) {}
 }

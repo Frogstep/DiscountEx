@@ -52,11 +52,8 @@ abstract class GridViewModel(private val useCase: IFeedUseCase) : ViewModel() {
     private fun getFeed() {
         viewModelScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                _progressState.value = if (feed.value.isEmpty()) {
-                    ProgressState.Loading
-                } else {
-                    ProgressState.Updating
-                }
+                if (feed.value.isEmpty())
+                    _progressState.value = ProgressState.Loading
             }
 
             try {
@@ -68,18 +65,12 @@ abstract class GridViewModel(private val useCase: IFeedUseCase) : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to get feed. Sources: ${useCase.getSources().map { it.path }.joinToString(", ")}", e)
-               // _progressState.value = ProgressState.Error(e.message ?: "Unknown error")
+                Log.e(TAG, "Failed to get feed. Sources: ${useCase.getSources().joinToString(", ") { it.path }}", e)
                 _progressState.value = ProgressState.Error(e.message ?: "Unknown error")
             }
         }
     }
 
-//    private fun updateErrorIfNeeded(previousState : ProgressState,  error: String?) {
-//        if (previousState !is ProgressState.Error) {
-//            _progressState.value = ProgressState.Error(error ?: "Unknown error")
-//        }
-//    }
 
     override fun onCleared() {
         super.onCleared()
@@ -89,6 +80,7 @@ abstract class GridViewModel(private val useCase: IFeedUseCase) : ViewModel() {
 
     open fun updateFeedIfNeeded(channel: ChannelData) {
         if (channel.pubDate != updateTimes[channel.source]) {
+            Log.d(TAG, "Feed [${channel.source}] is going to be updated")
             val updatedItems = _feed.value.toMutableList()
             updatedItems.removeAll { it.source == channel.source }
             updatedItems += channel.items

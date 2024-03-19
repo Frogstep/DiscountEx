@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -91,7 +92,9 @@ fun ErrorText(text: String) {
 
 @Composable
 fun FeedsList(navController: NavController, channel: State<List<ItemData>>) {
+    val listState = rememberLazyGridState()
     LazyVerticalGrid(
+        state = listState,
         columns = GridCells.Adaptive(minSize = 128.dp),
         modifier = Modifier.padding(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -100,14 +103,6 @@ fun FeedsList(navController: NavController, channel: State<List<ItemData>>) {
         items(channel.value.size, key = { index -> channel.value[index].link }) { index ->
             val item = channel.value[index]
             FeedItem(item = item, onItemClicked = {
-                navController.previousBackStackEntry
-                    ?.savedStateHandle
-                    ?.set("url", URLEncoder.encode(it.link, "utf-8"))
-
-                navController.previousBackStackEntry
-                    ?.savedStateHandle
-                    ?.set("title", URLEncoder.encode(it.title, "utf-8"))
-
                 navController.previousBackStackEntry
                     ?.savedStateHandle
                     ?.set("feed", FeedEntry(it.title, it.link))

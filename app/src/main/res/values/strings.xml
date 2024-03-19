@@ -5,4 +5,5 @@
     <string name="news_image">News image</string>
     <string name="show_news_feed">Show news feed</string>
     <string name="my_name_is">My name is: Ilya Sinitsin</string>
+    <string name="failed_to_load_page">Failed to load web page</string>
 </resources>

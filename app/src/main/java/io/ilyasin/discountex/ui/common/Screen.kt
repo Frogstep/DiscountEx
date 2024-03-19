@@ -9,4 +9,4 @@ sealed class Screen(val route: String) {
     data object WebViewScreen : Screen("WebViewScreen")
 }
 
-const val PRODUCT_SCREEN_PARAMETER = "category"
+const val URL_PARAMETER = "url"
