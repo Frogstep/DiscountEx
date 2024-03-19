@@ -1,6 +1,7 @@
 package io.ilyasin.discountex.ui.common
 
 import android.util.Log
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -35,7 +36,10 @@ abstract class GridViewModel(private val useCase: IFeedUseCase) : ViewModel() {
     private val _progressState = mutableStateOf<ProgressState>(ProgressState.NotInitialized)
     val progressState: State<ProgressState> = _progressState
 
-
+    var gridState: LazyGridState? = null
+    fun saveGridState(state: LazyGridState) {
+        gridState = state
+    }
     init {
         startFeedUpdate()
     }

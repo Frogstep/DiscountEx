@@ -53,7 +53,7 @@ fun NewsRssApp() {
             }
             DetailsScreen(navController = navController, feedEntry = feedEntry)
         }
-        composable(Screen.RssNewsScreen.route) { navBackResult ->
+        composable(Screen.RssNewsScreen.route) {
             NewsScreen(navController = navController)
         }
 

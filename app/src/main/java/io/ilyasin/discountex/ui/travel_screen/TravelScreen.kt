@@ -7,5 +7,11 @@ import io.ilyasin.discountex.ui.common.GridScreenContent
 
 @Composable
 fun TravelScreen(navController: NavController, viewModel: TravelViewModel = hiltViewModel()) {
-    GridScreenContent(navController = navController, viewModel.feed, viewModel.progressState)
+    GridScreenContent(
+        navController = navController,
+        viewModel.feed,
+        viewModel.progressState,
+        viewModel.gridState,
+        viewModel::saveGridState
+    )
 }

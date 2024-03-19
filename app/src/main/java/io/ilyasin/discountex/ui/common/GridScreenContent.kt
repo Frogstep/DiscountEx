@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,21 +33,32 @@ import java.net.URLEncoder
 
 
 @Composable
-fun GridScreenContent(navController: NavController, channel: State<List<ItemData>>, progressState: State<ProgressState>) {
+fun GridScreenContent(
+    navController: NavController,
+    channel: State<List<ItemData>>,
+    progressState: State<ProgressState>,
+    gridState: LazyGridState?,
+    saveGridState: (LazyGridState) -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()//.background(Color.White),
     ) {
         when (progressState.value) {
             ProgressState.Loading, ProgressState.NotInitialized -> LoadingView()
-            ProgressState.Idle, ProgressState.Updating -> FeedsList(navController, channel)
-            is ProgressState.Error -> ErrorView(navController, channel)
+            ProgressState.Idle, ProgressState.Updating -> FeedsList(navController, channel, gridState, saveGridState)
+            is ProgressState.Error -> ErrorView(navController, channel, gridState, saveGridState)
         }
     }
 }
 
 @Composable
-fun ErrorView(navController: NavController, channel: State<List<ItemData>>) {
+fun ErrorView(
+    navController: NavController,
+    channel: State<List<ItemData>>,
+    gridState: LazyGridState?,
+    saveGridState: (LazyGridState) -> Unit
+) {
     if (channel.value.isEmpty()) {
         Box(
             modifier = Modifier
@@ -67,7 +80,7 @@ fun ErrorView(navController: NavController, channel: State<List<ItemData>>) {
             ) {
                 ErrorText(stringResource(R.string.unable_to_update_rss_feed))
             }
-            FeedsList(navController, channel)
+            FeedsList(navController, channel, gridState, saveGridState)
         }
     }
 }
@@ -94,10 +107,20 @@ fun ErrorText(text: String) {
 
 
 @Composable
-fun FeedsList(navController: NavController, channel: State<List<ItemData>>) {
-    val listState = rememberLazyGridState()
+fun FeedsList(
+    navController: NavController,
+    channel: State<List<ItemData>>,
+    gridState: LazyGridState?,
+    saveGridState: (LazyGridState) -> Unit
+) {
+    val localGridState = gridState?: rememberLazyGridState()
+    LaunchedEffect(localGridState) {
+        saveGridState(localGridState)
+    }
+    //val listStateSaveAble = rememberSaveable { rememberLazyGridState() }
+    //val listStateSaveAble = rememberSaveable { rememberLazyGridState() }
     LazyVerticalGrid(
-        state = listState,
+        state = localGridState,
         columns = GridCells.Adaptive(minSize = itemMinWidth),
         modifier = Modifier.padding(top = padding, bottom = padding),
         verticalArrangement = Arrangement.spacedBy(padding),
