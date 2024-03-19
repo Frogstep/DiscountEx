@@ -3,4 +3,6 @@
     <string name="travel">Travel news</string>
     <string name="mixed">Mixed news</string>
     <string name="news_image">News image</string>
+    <string name="show_news_feed">Show news feed</string>
+    <string name="my_name_is">My name is: Ilya Sinitsin</string>
 </resources>

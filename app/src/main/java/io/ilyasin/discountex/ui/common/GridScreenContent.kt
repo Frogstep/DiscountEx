@@ -56,9 +56,11 @@ fun ErrorView(navController: NavController, channel: State<List<ItemData>>) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .padding(Dimens.padding), contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(Dimens.padding), contentAlignment = Alignment.Center
+            ) {
                 ErrorText("Unable to update RSS feed")
             }
             FeedsList(navController, channel)
@@ -98,6 +100,18 @@ fun FeedsList(navController: NavController, channel: State<List<ItemData>>) {
         items(channel.value.size, key = { index -> channel.value[index].link }) { index ->
             val item = channel.value[index]
             FeedItem(item = item, onItemClicked = {
+                navController.previousBackStackEntry
+                    ?.savedStateHandle
+                    ?.set("url", URLEncoder.encode(it.link, "utf-8"))
+
+                navController.previousBackStackEntry
+                    ?.savedStateHandle
+                    ?.set("title", URLEncoder.encode(it.title, "utf-8"))
+
+                navController.previousBackStackEntry
+                    ?.savedStateHandle
+                    ?.set("feed", FeedEntry(it.title, it.link))
+
                 navController.navigate("${Screen.WebViewScreen}/${URLEncoder.encode(it.link, "utf-8")}")
             })
         }
